@@ -2,9 +2,11 @@ import { Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { PUBLIC_API_PATH } from "$env/static/public";
 import { auth } from "@/server/auth";
+import { authController } from "@/server/auth/controller";
 
 const app = new Elysia({ prefix: PUBLIC_API_PATH })
   .use(swagger())
+  .use(authController)
   .mount(auth.handler)
   .macro({
     auth: {
@@ -21,6 +23,9 @@ const app = new Elysia({ prefix: PUBLIC_API_PATH })
         };
       },
     },
+  })
+  .get("/user", ({ user }) => user, {
+    auth: true, // TODO : DELETE THIS SHIT LATER
   })
   .get("/hi", () => "Hi Elysia");
 
