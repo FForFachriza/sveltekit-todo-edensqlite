@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { swagger } from "@elysiajs/swagger";
 import { PUBLIC_API_PATH } from "$env/static/public";
 import { auth } from "@/server/auth";
-import { authController } from "@/server/auth/controller";
+import { authController } from "@/server/auth/auth.controller";
 
 const app = new Elysia({ prefix: PUBLIC_API_PATH })
   .use(swagger())

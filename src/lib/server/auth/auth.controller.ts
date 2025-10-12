@@ -1,12 +1,12 @@
 import { Elysia } from "elysia";
-import { Auth } from "./service";
-import { AuthModel } from "./model";
+import { Auth } from "./auth.service";
+import { AuthModel } from "./auth.model";
 
 export const authController = new Elysia({ prefix: "/auth" }).post(
-  "/sign-in",
+  "/sign-up",
   async ({ body }) => {
     try {
-      const response = await Auth.signIn(body);
+      const response = await Auth.signUp(body);
       return {
         status: 200,
         data: {
@@ -14,7 +14,7 @@ export const authController = new Elysia({ prefix: "/auth" }).post(
           email: response.user.email,
           username: response.user.name,
         },
-        message: "Sign-in successful",
+        message: "Sign Up successful",
       };
     } catch (e) {
       return {
@@ -25,7 +25,7 @@ export const authController = new Elysia({ prefix: "/auth" }).post(
     }
   },
   {
-    body: AuthModel.signInBody,
-    response: AuthModel.signInResponse,
+    body: AuthModel.signUpBody,
+    response: AuthModel.signUpResponse,
   },
 );
