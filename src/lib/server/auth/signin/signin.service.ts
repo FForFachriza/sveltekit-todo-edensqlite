@@ -2,16 +2,15 @@ import { type Static } from "elysia";
 import { auth } from "@/server/auth";
 import type { AuthModel } from "../auth.model";
 
-type SignUpBody = Static<typeof AuthModel.signUpBody>;
+type SignInBody = Static<typeof AuthModel.signInBody>;
 
-export async function signUp(body: SignUpBody) {
-  const { email, name, password } = body;
+export async function signIn(body: SignInBody) {
+  const { email, password } = body;
 
-  return await auth.api.signUpEmail({
+  return await auth.api.signInEmail({
     body: {
       email: email,
       password: password,
-      name: name,
     },
     returnHeaders: true,
   });
