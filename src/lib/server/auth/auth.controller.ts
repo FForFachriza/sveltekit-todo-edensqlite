@@ -24,6 +24,8 @@ export const authController = new Elysia({ prefix: "/auth" })
           message: "Sign Up successful",
         };
       } catch (e) {
+        set.status = 400;
+
         return {
           status: 400,
           data: null,
@@ -59,6 +61,8 @@ export const authController = new Elysia({ prefix: "/auth" })
           message: "Sign In successful",
         };
       } catch (e) {
+        set.status = 400;
+
         return {
           status: 400,
           data: null,
