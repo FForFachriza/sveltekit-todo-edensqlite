@@ -21,15 +21,15 @@
 
         loading = true;
 
-        const { data } = await api.auth["sign-in"].post({
+        const { data, error } = await api.auth["sign-in"].post({
             email: email as string,
             password: password as string,
         });
 
-        if (data?.status !== 200) {
-            toast.error(data!.message);
+        if (error) {
+            toast.error(error.value.message as string);
         } else {
-            toast.success(data!.message);
+            toast.success(data.message);
             await goto(resolve("/"));
         }
 
