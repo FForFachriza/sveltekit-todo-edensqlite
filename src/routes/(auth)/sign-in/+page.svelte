@@ -5,6 +5,7 @@
     import { Button } from "@/components/ui/button";
     import { Input } from "@/components/ui/input";
     import { Label } from "@/components/ui/label";
+    import { Separator } from "@/components/ui/separator";
     import { toast } from "svelte-sonner";
 
     let loading: boolean = $state(false);
@@ -46,7 +47,7 @@
         <div class="flex flex-col gap-y-2">
             <h1 class="font-bold text-xl">Sign In</h1>
             <p class="text-primary/80">
-                Enter your email below to login to your account
+                Enter your email below to sign in to your account
             </p>
         </div>
         <div class="flex flex-col gap-y-6 mt-6">
@@ -64,7 +65,13 @@
                     required
                 />
             </div>
+        </div>
+        <div class="flex flex-col gap-y-4 mt-4">
             <Button disabled={loading} type="submit">Sign In</Button>
+            <Separator />
+            <Button href={resolve("/sign-up")} variant="outline"
+                >Don't Have an Account? Use Sign Up Instead</Button
+            >
         </div>
     </form>
 </section>
